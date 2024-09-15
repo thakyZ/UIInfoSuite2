@@ -66,12 +66,12 @@ internal class ShowRobinBuildingStatusIcon : IDisposable
     UpdateRobinBuindingStatusData();
   }
 
-  private void OnDayStarted(object sender, DayStartedEventArgs e)
+  private void OnDayStarted(object? sender, DayStartedEventArgs e)
   {
     UpdateRobinBuindingStatusData();
   }
 
-  private void OnRenderingHud(object sender, RenderingHudEventArgs e)
+  private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
   {
     // Draw icon
     if (UIElementUtils.IsRenderingNormally() && _IsBuildingInProgress && _buildingIconSpriteLocation.HasValue)
@@ -87,7 +87,7 @@ internal class ShowRobinBuildingStatusIcon : IDisposable
     }
   }
 
-  private void OnRenderedHud(object sender, RenderedHudEventArgs e)
+  private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
   {
     // Show text on hover
     if (_IsBuildingInProgress &&
@@ -157,12 +157,12 @@ internal class ShowRobinBuildingStatusIcon : IDisposable
     }
     else
     {
-      ModEntry.MonitorObject.Log($"{GetType().Name}: Could not find Robin spritesheet.", LogLevel.Warn);
+      ModEntry.MonitorObject.Log($"{GetType().Name}: Could not find Robin sprite sheet.", LogLevel.Warn);
     }
 
     if (_robinIconSheet == null)
     {
-      ModEntry.MonitorObject.Log($"{GetType().Name}: Could not find Robin spritesheet.", LogLevel.Warn);
+      ModEntry.MonitorObject.Log($"{GetType().Name}: Could not find Robin sprite sheet.", LogLevel.Warn);
     }
 
     _buildingIconSpriteLocation =
