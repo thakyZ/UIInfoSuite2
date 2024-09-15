@@ -28,6 +28,7 @@ internal class ShowToolUpgradeStatus : IDisposable
         or Pickaxe
         or Hoe
         or WateringCan
+        or Pan
         or GenericTool { IndexOfMenuItemView: >= 13 and <= 16 })
     {
       ParsedItemData? itemData = ItemRegistry.GetDataOrErrorItem(toolBeingUpgraded.QualifiedItemId);
@@ -113,7 +114,7 @@ internal class ShowToolUpgradeStatus : IDisposable
 
   private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
   {
-    if (!UIElementUtils.IsRenderingNormally() || _toolBeingUpgraded.Value == null)
+    if (!UIElementUtils.IsRenderingNormally() || _toolBeingUpgraded.Value == null || _toolUpgradeIcon.Value == null)
     {
       return;
     }
@@ -128,7 +129,7 @@ internal class ShowToolUpgradeStatus : IDisposable
   private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
   {
     // Show text on hover
-    if (_toolBeingUpgraded.Value != null && _toolUpgradeIcon.Value.containsPoint(Game1.getMouseX(), Game1.getMouseY()))
+    if (_toolBeingUpgraded.Value != null && _toolUpgradeIcon.Value != null && _toolUpgradeIcon.Value.containsPoint(Game1.getMouseX(), Game1.getMouseY()))
     {
       IClickableMenu.drawHoverText(Game1.spriteBatch, _hoverText.Value, Game1.dialogueFont);
     }
